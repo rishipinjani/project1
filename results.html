@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block title %}Search Results{% endblock %}
+{% block style %}
+<style>
+.card-title{
+  font-weight:bolder;
+  font-family:"Garamond";
+}
+</style>
+{% endblock %}
+{% block body %}
+  <p class="head">Search results</p>
+  <hr>
+<div class="grid">
+  {% if not title %}
+  <p class="subheading">No such book found!</p>
+  {% else %}
+{% for i in title %}
+<div class="card" style="padding:2px;">
+  <div class="card-body">
+    <h3 class="card-title">{{ i[1] }}</h3>
+    <p class="card-text"><span class="subc">ISBN: </span>{{ i[0] }}</p>
+    <p class="card-text"><span class="subc">Author: </span>{{ i[2] }}</p>
+    <p class="card-text"><span class="subc">Year: </span>{{ i[3] }}</p>
+    <button type="button" class="btn btn-primary btn-lg" name="data"><a href="{{url_for('bookinfo',tl=i[1], i1=i[0], a=i[2], y=i[3])}}" class="card-link" style="color:white;">Click to see reviews</a></button>
+  </div>
+</div>
+{% endfor %}
+{% endif %}
+</div>
+{% endblock%}

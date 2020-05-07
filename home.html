@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block title %}Search{% endblock %}
+{% block body %}
+<p class="head">Welcome!</p>
+<hr>
+{% if alert==1 %}
+<div class="alert alert-success" role="alert" style="padding:20px;">
+Your review has been posted!
+</div>
+{% endif %}
+<form class="form-control-lg" action="{{url_for( 'sresults' )}}" method="POST">
+<div class="form-group">
+    <label for="Search">Search by</label>
+    <select class="form-control" id="select" name="select">
+      <option value="1">ISBN</option>
+      <option selected value="2">Book Name</option>
+      <option value="3">Author</option>
+    </select>
+  </div>
+    <input class="form-control" name="search" type="search" placeholder="Search" aria-label="Search" style="height:40px;">
+    <button class="btn btn-primary btn-lg btn-block" style="width:50%; margin-top:20px;" type="submit">Search</button>
+</form>
+{% endblock %}

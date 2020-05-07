@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block title %}Book Details{% endblock %}
+{% block body %}
+<div class="content">
+<p class="head" style="font-size:55px;">Reviews and Details of {{ tl }}</p>
+<hr>
+<p class="subheading">ISBN: {{ i1 }}</p>
+<p class="subheading">Auuthor: {{ a }}</p>
+<p class="subheading">Publish Year: {{ y }}</p>
+<hr>
+<p class="subheading">Goodreads Review Information:</p>
+<p class="subheading">Average Rating: {{ ar }}</p>
+<p class="subheading">Number of Ratings Received: {{ wrc }}</p>
+<hr>
+<p class="subheading">Reviews:</p>
+{% if alert==1 %}
+<p class="subheading">No reviews posted yet!</p>
+{% else %}
+<div class="grid">
+{% for w in revs %}
+<div class="card" style="padding:2px;">
+  <div class="card-body">
+    <p class="card-text"><span class="subc">User: </span>{{ w[1] }}</p>
+    <p class="card-text"><span class="subc">Rating: </span>{{ w[3] }}</p>
+    <p class="card-text"><span class="subc">Opinion: </span>{{ w[4] }}</p>
+  </div>
+  </div>
+{% endfor %}
+</div>
+{% endif %}
+<hr>
+<p class="subheading" style="text-align:left;">Submit Review</p>
+<form action="{{url_for( 'posted' )}}" method="POST">
+  <div class="form-group">
+    <label for="isbn">Book ISBN</label>
+    <input type="text" class="form-control" name="isbn" value={{ i1 }} readonly>
+    <small class="form-text text-muted">You do not have to enter anything here.</small>
+  </div>
+  <div class="form-group">
+    <label for="username">Enter your username</label>
+    <input type="text" class="form-control" id="username" name="username" placeholder="username">
+  </div>
+  <div class="form-group">
+    <label for="rating">Enter Rating between 1 to 5</label>
+    <input type="number" name="rating" step="0.01" min="1.0" max="5.0" class="form-control" id="rating" placeholder="Rating">
+  </div>
+  <div class="form-group">
+    <label for="opinion">Your Opinions on the Book:</label>
+    <input type="text" name="opinion" id="opinion" class="form-control" placeholder="Opinions"></input>
+  </div>
+  <button type="submit" class="btn btn-primary btn-lg btn-block" style="width:30%;font-family:sans-serif;">Submit</button>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block title %}Success{% endblock %}
+{% block body %}
+<p class="head" style="text-align:center">Success</p>
+<hr>
+<p class="subheading">Hello, {{ Name }} </p>
+<p class="subheading">You have successfully created your account!</p>
+<p class="subheading">Log-in to continue!</p>
+<a href="{{url_for('login')}}" class="btn btn-primary btn-lg btn-block" role="button" style="width:50%;margin-left:auto;margin-right:auto;">Login!</a>
+{% endblock %}
